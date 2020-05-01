@@ -6,11 +6,13 @@ export = () =>
     "Guild",
     (Guild) =>
       class extends Guild {
-        db: GuildEntity | null = null;
+        public db: GuildEntity | null = null;
+
         constructor() {
           super(arguments[0], arguments[1]);
           this.init();
         }
+
         init() {
           GuildEntity.findOne({ guildID: this.id }).then((guild) => {
             this.db = guild || new GuildEntity(this.id);

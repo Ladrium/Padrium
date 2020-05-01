@@ -4,5 +4,5 @@ export * from "./structures/base/Command";
 export * from "./structures/base/Event";
 export * from "./interfaces/CommandData";
 export * from "./database/Guild";
-
-require("./structures/extend/Guild")();
+export * from "./database/GuildMember";
+export * from "./database/User";

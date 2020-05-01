@@ -1,5 +1,6 @@
-import { BaseEntity, Column, PrimaryColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
 
+@Entity("Guild")
 export class GuildEntity extends BaseEntity {
   @PrimaryColumn("guildID") public guildID: string;
   @Column("prefix") public prefix: string = "p!";

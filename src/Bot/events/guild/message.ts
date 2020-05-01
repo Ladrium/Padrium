@@ -12,10 +12,16 @@ export = class extends Event {
       // @ts-ignore
       message.member! = await message.guild.members.fetch(message.author);
 
-    if (message.guild.db) message.guild.init();
+    if (!message.guild.db) message.guild.init();
+    if (!message.member.db) message.member.init();
+    if (!message.author.db) message.author.init();
 
-    console.log(message.guild.db);
-    const args = message.content.trim().split(/ +/g);
+    if (!message.content.startsWith(message.guild.db!.prefix)) return;
+
+    const args = message.content
+      .trim()
+      .slice(message.guild.db!.prefix.length)
+      .split(/ +/g);
     const cmd = args.shift()!.toLowerCase();
     const command = bot.handler.getCommand(cmd);
 
