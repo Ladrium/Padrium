@@ -1,0 +1,26 @@
+{
+  "name": "padrium",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/Bot/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "discord",
+    "bot",
+    "discord.js"
+  ],
+  "author": "ladrium",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "mongodb": "^3.5.6",
+    "typeorm": "^0.2.24"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0"
+  }
+}

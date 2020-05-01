@@ -1,0 +1,12 @@
+{
+  "DEVELOPMENT": {
+    "id": "yes",
+    "token": "yes",
+    "uri": "mongodb uri yes"
+  },
+  "PRODUCTION": {
+    "id": "yes",
+    "token": "yes",
+    "uri": "mongodb uri yes"
+  }
+}
