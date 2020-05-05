@@ -16,7 +16,7 @@ export = () =>
         init() {
           GuildMemberEntity.findOne({
             guildID: this.guild.id,
-            memberID: this.id,
+            mid: this.id
           }).then((member) => {
             this.db = member || new GuildMemberEntity(this.id, this.guild.id);
           });

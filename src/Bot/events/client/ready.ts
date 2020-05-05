@@ -1,6 +1,5 @@
 import { Event, PadClient } from "../../../Lib";
-import { createConnection } from "typeorm";
-import { Config } from "../../../Lib";
+import start from "../../../server/server";
 
 export = class extends Event {
   constructor() {
@@ -8,5 +7,6 @@ export = class extends Event {
   }
   async run(bot: PadClient) {
     console.log(`[${bot.user!.tag}] => ready`);
+    start(bot);
   }
 };

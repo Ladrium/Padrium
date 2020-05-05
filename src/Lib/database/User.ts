@@ -1,17 +1,25 @@
-import { BaseEntity, Entity, PrimaryColumn, Column } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ObjectID,
+  ObjectIdColumn,
+  PrimaryColumn
+} from "typeorm";
 
 @Entity("User")
 export class UserEntity extends BaseEntity {
-  @PrimaryColumn("userID") public userID: string;
-
+  @ObjectIdColumn({ name: "_id" })
+  public _id?: ObjectID;
+  @PrimaryColumn("uid") public uid: string;
   @Column("badges") public badges: UserBadges = {
     dev: false,
-    premium: false,
+    premium: false
   };
 
   constructor(id: string) {
     super();
-    this.userID = id;
+    this.uid = id;
   }
 }
 

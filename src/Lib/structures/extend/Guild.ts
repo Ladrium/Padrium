@@ -14,7 +14,7 @@ export = () =>
         }
 
         init() {
-          GuildEntity.findOne({ guildID: this.id }).then((guild) => {
+          GuildEntity.findOne({ gid: this.id }).then((guild) => {
             this.db = guild || new GuildEntity(this.id);
           });
         }

@@ -14,7 +14,7 @@ export = () =>
         }
 
         init() {
-          UserEntity.findOne({ userID: this.id }).then((user) => {
+          UserEntity.findOne({ uid: this.id }).then((user) => {
             this.db = user || new UserEntity(this.id);
           });
         }

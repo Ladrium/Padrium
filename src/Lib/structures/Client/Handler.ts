@@ -1,13 +1,26 @@
-import { PadClient } from "./PadClient";
-import { readdirSync } from "fs";
+import {
+  PadClient
+} from "./PadClient";
+import {
+  readdirSync
+} from "fs";
 import EventEmitter from "events";
-import { Command } from "../..";
+import {
+  Command
+} from "../..";
+import {
+  Collection
+} from "discord.js";
 
 export class Handler extends EventEmitter {
-  public dirs: { commands: string; events: string };
+  public dirs: {
+    commands: string;events: string
+  };
   public bot: PadClient;
 
-  constructor(bot: PadClient, dirs: { commands: string; events: string }) {
+  constructor(bot: PadClient, dirs: {
+    commands: string;events: string
+  }) {
     super();
     this.bot = bot;
     this.dirs = dirs;
@@ -54,5 +67,8 @@ export class Handler extends EventEmitter {
       this.bot.commands.find((cmd) => cmd.aliases.includes(command)) ||
       null
     );
+  }
+  commands(categories: boolean = false) {
+    return categories ? this.bot.commands.reduce((acc: string[], val) => acc.includes(val.category!) ? acc : [...acc, val.category!], []) : this.bot.commands.array();
   }
 }

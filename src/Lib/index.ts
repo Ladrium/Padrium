@@ -6,3 +6,4 @@ export * from "./interfaces/CommandData";
 export * from "./database/Guild";
 export * from "./database/GuildMember";
 export * from "./database/User";
+export * from "./structures/PadEmbed";

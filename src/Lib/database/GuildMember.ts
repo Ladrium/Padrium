@@ -1,21 +1,30 @@
-import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ObjectID,
+  ObjectIdColumn,
+  PrimaryColumn
+} from "typeorm";
 
 @Entity("GuildMember")
 export class GuildMemberEntity extends BaseEntity {
+  @ObjectIdColumn({ name: "_id" })
+  public _id?: ObjectID;
   @PrimaryColumn("guildID") public guildID: string;
-  @PrimaryColumn("memberID") public memberID: string;
+  @PrimaryColumn("mid") public mid: string;
 
   @Column("eco") public eco: MemberEco = {
     coins: 50,
     level: 1,
-    xp: 0,
+    xp: 0
   };
   @Column("config") public config: MemberConfig = { XPMsg: false };
 
   constructor(memberID: string, guildID: string) {
     super();
     this.guildID = guildID;
-    this.memberID = memberID;
+    this.mid = memberID;
   }
 }
 
