@@ -10,6 +10,7 @@ export = () =>
 
         constructor() {
           super(arguments[0], arguments[1]);
+          this.command = {};
           this.init();
         }
 

@@ -5,7 +5,8 @@ import {
   GuildEntity,
   GuildMemberEntity,
   PadClient,
-  UserEntity
+  UserEntity,
+  PadEmbed
 } from "../Lib";
 import { createConnection } from "typeorm";
 
@@ -24,6 +25,8 @@ declare module "discord.js" {
 
   interface User {
     db: UserEntity | null;
+    cooldown: number;
+    command: { [key: string]: { cooldown: number } };
 
     init(): void;
   }
@@ -33,6 +36,7 @@ declare module "discord.js" {
       content: string,
       options?: { type?: "base" | "error"; reply?: boolean }
     ): Promise<Message>;
+    embed(type?: "error" | "base"): any;
   }
 }
 createConnection({
