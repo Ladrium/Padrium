@@ -11,7 +11,7 @@ export class Command implements CommandData {
   public description: string = "No Description";
   public dev: boolean = false;
   public owner: boolean = false;
-  public cooldown: number = 5000;
+  public cooldown: number = 0;
   public category?: string;
 
   constructor(name: string, data: CommandData = {}) {

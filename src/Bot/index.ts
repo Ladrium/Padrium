@@ -36,6 +36,10 @@ declare module "discord.js" {
       content: string,
       options?: { type?: "base" | "error"; reply?: boolean }
     ): Promise<Message>;
+    find(
+      type: "member" | "user",
+      query: string
+    ): Promise<GuildMember | User | null | undefined>;
     embed(type?: "error" | "base"): any;
   }
 }

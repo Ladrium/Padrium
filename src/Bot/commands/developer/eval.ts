@@ -1,6 +1,7 @@
 import { Command } from "../../../Lib";
 import { Message } from "discord.js";
 import { inspect } from "util";
+import fetch from "node-fetch";
 
 export = class extends Command {
   constructor() {
@@ -16,7 +17,7 @@ export = class extends Command {
       // here we evaluate the input
       let evaluated = await eval(`(async() => { return ${args.join(" ")} })()`);
 
-      const evalType = evaluated.constructor.name;
+      const evalType = evaluated ? evaluated.constructor.name : undefined;
 
       if (typeof evaluated !== "string") {
         // we format the output as string
@@ -24,12 +25,26 @@ export = class extends Command {
           depth: 0
         });
       }
+      if (evaluated.length > 2000) {
+        const { key } = await (
+          await fetch("https://hasteb.in/documents", {
+            body: evaluated,
+            method: "POST"
+          })
+        ).json();
+
+        evaluated = `https://hasteb.in/${key}`;
+      }
       // if it was successful and no error occured it's going to return this embed
       returnEmbed = message
         .embed()
         .setTitle("Evaluation Output")
         .addField("Input", toJS(args.join(" ")))
-        .setDescription(toJS(evaluated))
+        .setDescription(
+          evaluated.startsWith("https://hasteb.in")
+            ? `[Full Output](${evaluated})`
+            : toJS(evaluated)
+        )
         .addField("Type", toJS(evalType))
         .setFooter(`Evaluated in: ${Date.now() - d}ms`);
     } catch (e) {

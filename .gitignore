@@ -7,3 +7,4 @@ dist/
 # Private
 .env
 config.json
+Web/

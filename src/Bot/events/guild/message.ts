@@ -25,11 +25,11 @@ export = class extends Event {
     if (!message.author.db) await message.author.init();
 
     if (
-      !message.author.cooldown ||
+      (message.author.db && !message.author.cooldown) ||
       (message.author.cooldown < Date.now() && Math.random() < 0.7)
     ) {
-      const coins = Math.floor(Math.random() * 10);
-      const xp = Math.floor(Math.random() * 10);
+      const coins = Math.floor(Math.random() * 10) + 1;
+      const xp = Math.floor(Math.random() * 10) + 1;
       message.author.db!.eco.coins += coins;
       message.author.db!.eco.xp += xp;
 
