@@ -10,16 +10,15 @@ export = () =>
 
         constructor() {
           super(arguments[0], arguments[1], arguments[2]);
-          this.init();
+          (async () => await this.init())();
         }
 
-        init() {
-          GuildMemberEntity.findOne({
-            guildID: this.guild.id,
-            mid: this.id
-          }).then((member) => {
-            this.db = member || new GuildMemberEntity(this.id, this.guild.id);
-          });
+        async init() {
+          this.db =
+            (await GuildMemberEntity.findOne({
+              mid: this.id,
+              guildID: this.guild.id
+            })) || new GuildMemberEntity(this.id, this.guild.id);
         }
       }
   );

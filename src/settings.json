@@ -1,0 +1,27 @@
+{
+  "gradient": ["00349E", "00B71E"],
+  "colors": {
+    "normal": "#000424",
+    "error": "#8a0000"
+  },
+  "adventure": {
+    "types": [
+      {
+        "id": 0,
+        "name": "Knight"
+      },
+      {
+        "id": 1,
+        "name": "Wizard"
+      },
+      {
+        "id": 2,
+        "name": "Knight"
+      },
+      {
+        "id": 3,
+        "name": "Knight"
+      }
+    ]
+  }
+}

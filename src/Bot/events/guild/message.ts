@@ -7,8 +7,6 @@ import {
   PermissionString
 } from "discord.js";
 
-const Cooldowns = new Set();
-
 export = class extends Event {
   constructor() {
     super("message");
@@ -49,7 +47,9 @@ export = class extends Event {
       message.author.db!.save().catch(() => {});
       message.author.cooldown = Date.now() + 120000;
     }
-    if (message.content.match(new RegExp(`^<@!?${bot.user!.id}>$`)))
+    if (
+      message.content.trim().match(new RegExp(`^<@!?${bot.user!.id}>( help)?$`))
+    )
       return message.sem(
         `Use ${message.guild.db!.prefix}help for all commands!`,
         { reply: true }
@@ -65,10 +65,7 @@ export = class extends Event {
 
     if (command) {
       if (!message.author.command) message.author.command = {};
-      if (
-        message.author.command[command.name] &&
-        message.author.command[command.name].cooldown > Date.now()
-      )
+      if (message.author.command[command.name]?.cooldown > Date.now())
         return message.sem(
           `You have a cooldown of ${ms(
             message.author.command[command.name].cooldown - Date.now()

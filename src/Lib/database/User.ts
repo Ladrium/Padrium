@@ -14,6 +14,12 @@ export class UserEntity extends BaseEntity {
   @PrimaryColumn("uid") public uid: string;
   @Column("eco") public eco: UserEco = {
     coins: 50,
+    business: {
+      type: 0
+    },
+    adventure: {
+      type: 0
+    },
     level: 1,
     xp: 0,
     msg: false
@@ -37,6 +43,12 @@ export interface UserBadges {
 export interface UserEco {
   coins: number;
   level: number;
+  business: {
+    type: number;
+  };
+  adventure: {
+    type: number;
+  };
   xp: number;
   msg: boolean;
 }

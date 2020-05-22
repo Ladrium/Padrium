@@ -10,13 +10,13 @@ export = () =>
 
         constructor() {
           super(arguments[0], arguments[1]);
-          this.init();
+          (async () => await this.init())();
         }
 
-        init() {
-          GuildEntity.findOne({ gid: this.id }).then((guild) => {
-            this.db = guild || new GuildEntity(this.id);
-          });
+        async init() {
+          this.db =
+            (await GuildEntity.findOne({ gid: this.id })) ||
+            new GuildEntity(this.id);
         }
       }
   );

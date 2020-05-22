@@ -11,13 +11,13 @@ export = () =>
         constructor() {
           super(arguments[0], arguments[1]);
           this.command = {};
-          this.init();
+          (async () => await this.init())();
         }
 
-        init() {
-          UserEntity.findOne({ uid: this.id }).then((user) => {
-            this.db = user || new UserEntity(this.id);
-          });
+        async init() {
+          this.db =
+            (await UserEntity.findOne({ uid: this.id })) ||
+            new UserEntity(this.id);
         }
       }
   );

@@ -1,6 +1,5 @@
 import { Command, PadClient, PadEmbed } from "../../../Lib";
 import { Message, User } from "discord.js";
-import ms from 'ms';
 
 export = class extends Command {
   constructor() {
@@ -31,7 +30,7 @@ export = class extends Command {
             true
           )
           .addField("Description", cmd.description || "No Description", true)
-          .addField("Cooldown", ms(cmd.cooldown, {long: true}), true)
+          .addField("Cooldown", cmd.cooldown + "ms", true)
           .addField("Owner Only", cmd.owner, true)
           .addField("Dev Only", cmd.dev, true)
           .addField(
@@ -42,10 +41,10 @@ export = class extends Command {
                   `\`${x
                     .split("_")
                     .map((z) => z[0].toUpperCase() + z.slice(1).toLowerCase())
-                    .join(", ")}\``
+                    .join(" ")}\``
               )
               .join(", ") || "None",
-              true
+            true
           )
           .addField(
             "Bot Permissions Needed",
@@ -58,7 +57,7 @@ export = class extends Command {
                     .join(", ")}\``
               )
               .join(", ") || "None",
-              true
+            true
           );
       } else all(this.bot!, helpEmbed, message.author);
     }
@@ -76,7 +75,7 @@ function all(bot: PadClient, helpEmbed: PadEmbed, author: User) {
       (bot!.handler.commands() as Command[])
         .filter((x: Command) => x.category === category)
         .map((cmd) => `\`${cmd.name}\``)
-        .join("\n")
+        .join(", ")
     );
   });
 }

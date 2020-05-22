@@ -1,15 +1,7 @@
-import {
-  MessageEmbed
-} from "discord.js";
-import {
-  PadClient
-} from "./Client/PadClient";
-import {
-  Message
-} from "discord.js";
-import {
-  colors
-} from "../../config.json";
+import { MessageEmbed } from "discord.js";
+import { PadClient } from "./Client/PadClient";
+import { Message } from "discord.js";
+import { colors } from "../../settings.json";
 
 export class PadEmbed extends MessageEmbed {
   public readonly bot: PadClient;
@@ -21,13 +13,19 @@ export class PadEmbed extends MessageEmbed {
     this.bot = bot;
   }
 
-  base(content ? : string) {
-    this.setAuthor(this.message.author.username, this.message.author.displayAvatarURL({
+  base(content?: string) {
+    this.setAuthor(
+      this.message.author.username,
+      this.message.author.displayAvatarURL({
         dynamic: true
-      }))
-      .setFooter(this.bot.user!.username, this.bot.user!.displayAvatarURL({
-        dynamic: true
-      }))
+      })
+    )
+      .setFooter(
+        this.bot.user!.username,
+        this.bot.user!.displayAvatarURL({
+          dynamic: true
+        })
+      )
       .setColor(colors.normal)
       .setTimestamp();
     if (content) this.setDescription(content);
