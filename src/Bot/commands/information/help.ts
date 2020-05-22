@@ -1,5 +1,6 @@
 import { Command, PadClient, PadEmbed } from "../../../Lib";
 import { Message, User } from "discord.js";
+import ms from 'ms';
 
 export = class extends Command {
   constructor() {
@@ -21,16 +22,18 @@ export = class extends Command {
           .addField(
             "Category",
             cmd.category![0].toUpperCase() +
-              cmd.category!.slice(1).toLowerCase()
+              cmd.category!.slice(1).toLowerCase(),
+            true
           )
           .addField(
             "Aliases",
-            cmd.aliases.map((x) => `\`${x}\``).join(", ") || "None"
+            cmd.aliases.map((x) => `\`${x}\``).join(", ") || "None",
+            true
           )
-          .addField("Description", cmd.description || "No Description")
-          .addField("Cooldown", cmd.cooldown + "ms")
-          .addField("Owner Only", cmd.owner)
-          .addField("Dev Only", cmd.dev)
+          .addField("Description", cmd.description || "No Description", true)
+          .addField("Cooldown", ms(cmd.cooldown, {long: true}), true)
+          .addField("Owner Only", cmd.owner, true)
+          .addField("Dev Only", cmd.dev, true)
           .addField(
             "User Permissions Needed",
             (cmd.userPerms as string[])
@@ -41,7 +44,8 @@ export = class extends Command {
                     .map((z) => z[0].toUpperCase() + z.slice(1).toLowerCase())
                     .join(", ")}\``
               )
-              .join(", ") || "None"
+              .join(", ") || "None",
+              true
           )
           .addField(
             "Bot Permissions Needed",
@@ -53,7 +57,8 @@ export = class extends Command {
                     .map((z) => z[0].toUpperCase() + z.slice(1).toLowerCase())
                     .join(", ")}\``
               )
-              .join(", ") || "None"
+              .join(", ") || "None",
+              true
           );
       } else all(this.bot!, helpEmbed, message.author);
     }

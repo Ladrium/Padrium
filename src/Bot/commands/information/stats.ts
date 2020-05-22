@@ -20,10 +20,10 @@ export = class extends Command {
           `>>> **NodeJS Version**: ${process.version}`,
           `**Platform**: ${process.platform}`,
           `**Uptime**: ${ms(os.uptime() * 1000)}`,
-          `**CPUs**: \n${os
+          `**Cores**: \n${os
             .cpus()
             .map(
-              (x, i) => `CPU ${i + 1}: Model: ${x.model}, Speed: ${x.speed}MHz`
+              (x, i) => `Core ${i + 1}: Model: ${x.model}, Speed: ${x.speed}MHz`
             )
             .join(",\n")}`,
           `**Memory**:\n Total: ${Math.floor(
