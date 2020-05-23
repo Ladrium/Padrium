@@ -9,8 +9,8 @@ export = () =>
         sem(
           content: string,
           options?: {
-            type: "error" | "base";
-            reply: boolean;
+            type?: "error" | "base";
+            reply?: boolean;
           }
         ): Promise<msg> {
           if (!options)
@@ -26,6 +26,18 @@ export = () =>
         }
         embed(type?: "error" | "base"): unknown {
           return new PadEmbed(this, this.client as PadClient)[type || "base"]();
+        }
+
+        async promptMessage(question: string): Promise<msg | null> {
+          this.sem(question);
+          const message = await this.channel.awaitMessages(
+            (m) => m.author === this.author,
+            {
+              max: 1,
+              time: 40000
+            }
+          );
+          return message?.first() ?? null;
         }
         async find(
           type: "member" | "user",

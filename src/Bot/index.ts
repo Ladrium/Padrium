@@ -12,6 +12,9 @@ import { createConnection } from "typeorm";
 
 declare module "discord.js" {
   interface Guild {
+    last?: number;
+    slain: boolean;
+    attacking?: boolean;
     db: GuildEntity | null;
 
     init(): void;
@@ -26,6 +29,7 @@ declare module "discord.js" {
   interface User {
     db: UserEntity | null;
     cooldown: number;
+    started?: boolean;
     command: { [key: string]: { cooldown: number } };
 
     init(): void;
@@ -40,6 +44,7 @@ declare module "discord.js" {
       type: "member" | "user",
       query: string
     ): Promise<GuildMember | User | null | undefined>;
+    promptMessage(question: string): Promise<Message | null>;
     embed(type?: "error" | "base"): any;
   }
 }

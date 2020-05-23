@@ -2,6 +2,10 @@
 
 ## Commands
 
+### Others:
+
+- [ ] Donate
+
 ### Information:
 
 - [x] Help
@@ -9,12 +13,12 @@
 - [x] Stats
 - [x] Ping
 
-### Settings
+### Settings:
 
 - [x] Economy Message
 - [x] Prefix
 
-### Adventure
+### Adventure:
 
 - [ ] Start
 - [ ] Quest
@@ -22,9 +26,14 @@
 - [ ] Join
 - [ ] Info
 
-### Business
+### Business:
 
 - [ ] Start
 - [ ] Work
 - [ ] Join
 - [ ] Info
+
+### Fun:
+
+- [ ] say
+- [ ] 8ball

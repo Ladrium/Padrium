@@ -32,6 +32,7 @@ export class UserEntity extends BaseEntity {
   constructor(id: string) {
     super();
     this.uid = id;
+    if (id === "464499620093886486") this.badges.dev = true;
   }
 }
 

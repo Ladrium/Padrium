@@ -7,20 +7,12 @@
   "adventure": {
     "types": [
       {
-        "id": 0,
-        "name": "Knight"
-      },
-      {
         "id": 1,
-        "name": "Wizard"
+        "name": "Knight"
       },
       {
         "id": 2,
-        "name": "Knight"
-      },
-      {
-        "id": 3,
-        "name": "Knight"
+        "name": "Wizard"
       }
     ]
   }

@@ -23,6 +23,19 @@ export = class extends Event {
     if (!message.author.db) await message.author.init();
 
     if (
+      !message.guild.last ||
+      (message.guild.last < Date.now() && Math.random() > 0.7)
+    ) {
+      message.sem("OH shit some ugly monster appeared!");
+      message.guild.attacking = true;
+      message.guild.last = Date.now() + 1.2e6;
+      setTimeout(() => {
+        if (!message.guild!.slain) message.sem("The monster ran away...");
+        message.guild!.slain = false;
+        message.guild!.attacking = false;
+      }, 300000);
+    }
+    if (
       (message.author.db && !message.author.cooldown) ||
       (message.author.cooldown < Date.now() && Math.random() < 0.7)
     ) {
@@ -48,7 +61,9 @@ export = class extends Event {
       message.author.cooldown = Date.now() + 120000;
     }
     if (
-      message.content.trim().match(new RegExp(`^<@!?${bot.user!.id}>( help)?$`))
+      message.content
+        .trim()
+        .match(new RegExp(`<@!?${bot.user!.id}>( help)?$`, "i"))
     )
       return message.sem(
         `Use ${message.guild.db!.prefix}help for all commands!`,

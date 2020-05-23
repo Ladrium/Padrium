@@ -5,9 +5,12 @@ import fetch from "node-fetch";
 
 export = class extends Command {
   constructor() {
-    super("eval");
+    super("eval", {
+      aliases: ["e", "exec", "run", "gay"]
+    });
   }
   async run(message: Message, args: string[]) {
+    if (args.join(" ").includes("token")) return message.sem("ok why?");
     let returnEmbed;
 
     try {
