@@ -35,5 +35,5 @@
 
 ### Fun:
 
-- [ ] say
-- [ ] 8ball
+- [x] say
+- [x] 8ball
