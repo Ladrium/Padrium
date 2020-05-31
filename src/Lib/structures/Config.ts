@@ -6,7 +6,7 @@ config({
 });
 
 export const Config = {
-  get(wot: "uri" | "token" | "id") {
+  get(wot: "uri" | "token" | "id" | "prefix") {
     return conf[process.env.ENVIRONMENT! as "DEVELOPMENT" | "PRODUCTION"][wot];
   },
 };
